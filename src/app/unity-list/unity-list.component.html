@@ -1,0 +1,32 @@
+<section class="unity__seccao">
+    <div class="unity__border">
+
+        <h2>Unidades</h2>
+
+        <div class="unity__titulo" *ngFor="let unity of unities">
+            <h3>
+                <a [title]="unity.name + ' details'">
+                    {{ unity.name }}
+                </a>
+            </h3>
+
+            <p class="unity__descricao" *ngIf="unity.locationDescription">
+                Local: {{ unity.locationDescription }}
+            </p>
+            
+            <p class="unity__descricao" *ngIf="unity.WorkingHour">
+                Horario: {{ unity.WorkingHour }}
+            </p>
+
+            <p class="unity__descricao" *ngIf="unity.phone">
+                Telefone: {{ unity.phone }}
+            </p>
+
+            <p class="unity__descricao" *ngIf="unity.email">
+                Email: {{ unity.email }}
+            </p>
+
+
+        </div>
+    </div>
+</section>

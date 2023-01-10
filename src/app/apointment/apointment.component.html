@@ -1,0 +1,60 @@
+<section class="agendar__seccao">
+    <form class="agendar__form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <h2>Agendar</h2>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Unidade</mat-label>
+            <mat-select [(ngModel)]="selectedUnity" name="unidade" formControlName="unidade">
+            <mat-option *ngFor="let unity of unities" [value]="unity.id">
+                {{unity.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Serviço</mat-label>
+            <mat-select [(ngModel)]="selectedProduct" name="servico" formControlName="servico">
+            <mat-option *ngFor="let product of products" [value]="product.id">
+                {{product.name}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker"
+                   (dateInput)="addEvent($event)" formControlName="data">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Horario</mat-label>
+            <mat-select [(ngModel)]="selectedHour" name="hour" formControlName="hora">
+              <mat-option [value]="0900">09:00</mat-option>
+              <mat-option [value]="0930">09:30</mat-option>
+              <mat-option [value]="1000">10:00</mat-option>
+              <mat-option [value]="1030">10:30</mat-option>
+              <mat-option [value]="1100">11:00</mat-option>
+              <mat-option [value]="1130">11:30</mat-option>
+              <mat-option [value]="1200">12:00</mat-option>
+              <mat-option [value]="1230">12:30</mat-option>
+              <mat-option [value]="1300">13:00</mat-option>
+              <mat-option [value]="1330">13:30</mat-option>
+              <mat-option [value]="1400">14:00</mat-option>
+              <mat-option [value]="1430">14:30</mat-option>
+              <mat-option [value]="1500">15:00</mat-option>
+              <mat-option [value]="1530">15:30</mat-option>
+              <mat-option [value]="1600">16:00</mat-option>
+              <mat-option [value]="1630">16:30</mat-option>
+              <mat-option [value]="1700">17:00</mat-option>
+              <mat-option [value]="1730">17:30</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <button class="agendar__apointment" type="submit">Agendar</button>
+
+    </form>
+</section>

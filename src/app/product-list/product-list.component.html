@@ -1,0 +1,30 @@
+<section class="produtos__seccao">
+    <div class="produtos__border">
+
+        <h2>Products</h2>
+
+        <div class="product__titulo" *ngFor="let product of products">
+            <h3>
+                <a [title]="product.name + ' details'">
+                    {{ product.name }}
+                </a>
+            </h3>
+
+            <p class="product__descricao" *ngIf="product.description">
+                Descrição: {{ product.description }}
+            </p>
+
+            <p class="product__preco" *ngIf="product.price">
+                Preco: {{ product.price }}
+            </p>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
