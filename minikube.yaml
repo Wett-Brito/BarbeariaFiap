@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: barbearia-front:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          env:
+            - name: API_AGENDAMENTO_URL
+              value: "api-agendamento-service.default.svc.cluster.local"
+            - name: API_AGENDAMENTO_PORT
+              value: "8060"
+            - name: API_SERVICO_URL
+              value: "api-servico-service.default.svc.cluster.local"
+            - name: API_SERVICO_PORT
+              value: "8090"
+            - name: API_UNIDADE_URL
+              value: "api-unidade-service.default.svc.cluster.local"
+            - name: API_UNIDADE_PORT
+              value: "8070"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+spec:
+  type: NodePort
+  selector:
+    app: webapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30100
